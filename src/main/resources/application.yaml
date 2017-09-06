@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: kotlin-dto-workbench
+  profiles:
+    active: dev
+  datasource:
+      url: jdbc:h2:file:./build/db/kotlin-dto-workbench-prod;DB_CLOSE_DELAY=-1
+      username: sa
+      password:
+      driver-class-name: org.h2.Driver
+      platform: h2
+  jpa:
+    hibernate:
+      ddl-auto: update
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false
+      write_durations_as_timestamps: false
