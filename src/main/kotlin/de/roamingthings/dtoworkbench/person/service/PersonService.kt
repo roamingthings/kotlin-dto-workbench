@@ -15,13 +15,13 @@ import javax.transaction.Transactional
 @Service
 @Transactional
 class PersonService(val personRepository: PersonRepository) {
-    fun retrieveAllPersons(): List<PersonDto> = personRepository.findAll().map { it.toDto() }
+    inline final fun retrieveAllPersons(): List<PersonDto> = personRepository.findAll().map { it.toDto() }
 
-    fun createPerson(personDto: CreatePersonDto): PersonDto = personRepository.save(Person.fromDto(personDto)).toDto()
+    inline final fun createPerson(personDto: CreatePersonDto): PersonDto = personRepository.save(Person.fromDto(personDto)).toDto()
 
-    fun retrievePerson(id: Long): PersonDto? = personRepository.findById(id).orElse(null).toDto()
+    inline final fun retrievePerson(id: Long): PersonDto? = personRepository.findById(id).orElse(null).toDto()
 
-    fun deletePerson(id: Long) = personRepository.findById(id).ifPresent { personRepository.delete(it) }
+    inline final fun deletePerson(id: Long) = personRepository.findById(id).ifPresent { personRepository.delete(it) }
 
     fun updatePerson(id: Long, updateRequest: UpdatePersonDto): PersonDto? {
         return personRepository.findById(id).map { currentPerson ->
